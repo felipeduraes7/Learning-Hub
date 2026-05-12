@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- EVITA CACHE DO NAVEGADOR -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Lightboard</title>
+    <!-- ESTILOS DO DASHBOARD -->
+    <link rel="stylesheet" href="estilos/lightboard.css">
+    <!-- SCRIPTS DE AUTENTICAÇÃO E NAVEGAÇÃO -->
+    <script src="scripts/login.js"></script>
+    <script src="scripts/lightboard.js"></script>
+</head>
+<body>
+
+    <!-- OVERLAY (fecha o menu ao clicar fora) -->
+    <div class="overlay-menu" id="overlay-menu" onclick="fecharMenu()"></div>
+
+    <!-- BOTÃO HAMBÚRGUER (só aparece no mobile) -->
+    <button class="btn-menu-mobile" id="btn-menu-mobile" onclick="toggleMenu()" aria-label="Abrir menu">
+        <span></span> <!-- LINHA 1 -->
+        <span></span> <!-- LINHA 2 -->
+        <span></span> <!-- LINHA 3 -->
+    </button>
+
+    <!-- LAYOUT PRINCIPAL COM BARRA LATERAL + CONTEÚDO -->
+    <div class="layout-lightboard">
+        
+        <!-- BARRA LATERAL -->
+        <aside class="barra-lateral" id="barra-lateral">
+            <!-- LOGO -->
+            <div class="logo-topo">
+                <img src="imagens/logomarca.png" alt="Logo da Learning Hub">
+            </div>
+
+            <!-- NOME DO USUÁRIO -->
+            <div class="perfil-estudante">
+                <span><strong>OLÁ FELIPE!</strong></span>
+            </div>
+
+            <!-- MENU DE NAVEGAÇÃO -->
+            <nav class="menu-lateral">
+                <ul>
+                    <li><a href="#" onclick="mostrarView('home'); fecharMenu()">INÍCIO</a></li>
+                    <li><a href="#" onclick="mostrarView('projetos'); fecharMenu()">PROJETOS</a></li>
+                    <li><a href="#" onclick="mostrarView('conquistas'); fecharMenu()">CONQUISTAS</a></li>
+                    <li><a href="#" onclick="mostrarView('perfil'); fecharMenu()">PERFIL</a></li>
+                </ul>
+            </nav>
+
+            <!-- BOTÃO DE LOGOUT -->
+            <button class="botao-sair" onclick="sessionStorage.removeItem('usuarioLogado'); window.location.href='index.html'">SAIR</button>
+        </aside>
+
+        <!-- CONTEÚDO PRINCIPAL -->
+        <main class="conteudo-principal">
+            
+            <!-- MENU SUPERIOR -->
+            <header class="menu-principal">
+                <div class="menu-principal-esquerda">
+                    <h2>LIGHTBOARD</h2>
+                </div>
+                <nav class="menu-principal-direita">
+                    <a href="#">Início</a>
+                    <a href="#">Sobre o LH</a>
+                    <a href="#">Ajuda</a>
+                </nav>
+            </header>
+
+            <!-- ÁREA DE CONTEÚDO -->
+            <section class="area-conteudo">
+                
+                <!-- VIEW: INÍCIO (HOME) -->
+                <div id="home" class="view ativa">
+                    <div class="boas-vindas">
+                        <h1>BEM-VINDO AO LIGHTBOARD</h1>
+                        <p>Escolha uma categoria para começar seus estudos.</p>
+                    </div>
+                    <!-- CARDS DE CATEGORIAS DE CURSOS -->
+                    <div class="container-cards">
+                        <div class="card-estudo">
+                            <h3>Programação</h3>
+                            <p>Lógica de programação, algoritmos e desenvolvimento de software.</p>
+                            <button class="btn-card">Acessar</button>
+                        </div>
+                        <div class="card-estudo">
+                            <h3>Matemática</h3>
+                            <p>Cálculo, álgebra linear e matemática discreta aplicada.</p>
+                            <button class="btn-card">Acessar</button>
+                        </div>
+                        <div class="card-estudo">
+                            <h3>Front End</h3>
+                            <p>HTML, CSS, JavaScript e frameworks modernos de interface.</p>
+                            <button class="btn-card">Acessar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VIEW: PROJETOS -->
+                <div id="projetos" class="view">
+                    <div class="boas-vindas">
+                        <h1>PROJETOS</h1>
+                        <p>Linha do tempo dos seus projetos e portfólio.</p>
+                    </div>
+                    <!-- TIMELINE DE PROJETOS -->
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-ponto"></div>
+                            <div class="card-timeline">
+                                <h3>Site Institucional</h3>
+                                <span class="timeline-data">Janeiro 2025</span>
+                                <p>Desenvolvimento de site responsivo para empresa local utilizando HTML, CSS e JavaScript.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-ponto"></div>
+                            <div class="card-timeline">
+                                <h3>App de Tarefas</h3>
+                                <span class="timeline-data">Março 2025</span>
+                                <p>Aplicação web de gerenciamento de tarefas com armazenamento local e interface interativa.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-ponto"></div>
+                            <div class="card-timeline">
+                                <h3>Dashboard Analytics</h3>
+                                <span class="timeline-data">Maio 2025</span>
+                                <p>Painel de análise de dados com gráficos dinâmicos e integração com API externa.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VIEW: CONQUISTAS -->
+                <div id="conquistas" class="view">
+                    <div class="boas-vindas">
+                        <h1>CONQUISTAS</h1>
+                        <p>Em breve você poderá visualizar suas conquistas.</p>
+                    </div>
+                </div>
+
+                <!-- VIEW: PERFIL -->
+                <div id="perfil" class="view">
+                    <div class="boas-vindas">
+                        <h1>PERFIL</h1>
+                        <p>Em breve você poderá editar suas informações de perfil.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+</body>
+</html>

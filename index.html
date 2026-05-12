@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <!-- user-scalable=no removido: bloquear zoom é má prática e causa problemas no iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Hub</title>
+    <link rel="stylesheet" href="estilos/style.css">
+    <script src="scripts/login.js"></script>
+</head>
+<body id="corpo-total"> 
+    <!-- CONTAINER PRINCIPAL DO LOGIN -->
+    <div class="login-container" id="login-area">
+        <!-- ÁREA DA LOGO -->
+        <div class="card-materia">
+            <img src="imagens/logomarca.png" class="logo-selo" alt="Logo Learning Hub">
+        </div>
+
+        <h2>ACESSE SEU PORTAL</h2>
+
+        <!-- FORMULÁRIO DE ENTRADA -->
+        <div class="formulario-estilo">
+            <input type="text" id="usuario" placeholder="Digite seu usuário">
+            <input type="password" id="senha" placeholder="Digite sua senha">
+            <button type="button" class="btn-login" onclick="entrar()">ENTRAR</button>
+        </div>
+
+        <!-- LINKS AUXILIARES -->
+        <a href="recuperar-senha.html">Esqueceu a senha?</a>
+        <a href="cadastro.html" class="link-cadastro">Criar nova conta</a>
+    </div>
+</body>
+</html>

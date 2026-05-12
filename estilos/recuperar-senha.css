@@ -1,0 +1,44 @@
+/* ============================================
+   LEARNING HUB - ESTILOS RECUPERAR SENHA
+   ============================================ */
+
+/* Texto explicativo abaixo do título */
+.recuperar-descricao {
+    text-align: center;
+    font-size: 13px;
+    color: #000000b0;
+    margin: 8px 0 16px;
+    line-height: 1.4;
+}
+
+/* Ajuste do container para caber o texto extra */
+#recuperar-area {
+    padding: 24px 20px;
+}
+
+/* Caixa de mensagem de feedback */
+.mensagem-feedback {
+    text-align: center;
+    font-size: 13px;
+    margin-top: 12px;
+    padding: 10px;
+    border-radius: 16px;
+    display: none; /* Começa escondida */
+}
+
+/* Mensagem de sucesso (verde) */
+.mensagem-feedback.sucesso {
+    display: block;
+    background: rgba(52, 199, 89, 0.15);
+    color: #1d7a3a;
+    border: 1px solid rgba(52, 199, 89, 0.3);
+}
+
+/* Mensagem de erro (vermelho) */
+.mensagem-feedback.erro {
+    display: block;
+    background: rgba(255, 59, 48, 0.15);
+    color: #c41c1c;
+    border: 1px solid rgba(255, 59, 48, 0.3);
+}
+

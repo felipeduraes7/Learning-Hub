@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Recuperar Senha - Learning Hub</title>
+    <!-- ESTILO BASE COMPARTILHADO -->
+    <link rel="stylesheet" href="estilos/style.css">
+    <!-- ESTILOS ESPECÍFICOS DESTA PÁGINA -->
+    <link rel="stylesheet" href="estilos/recuperar-senha.css">
+    <!-- SCRIPT DE VALIDAÇÃO -->
+    <script src="scripts/recuperar-senha.js"></script>
+</head>
+<body id="corpo-total">
+    <!-- CONTAINER PRINCIPAL -->
+    <div class="login-container" id="recuperar-area">
+        <!-- LOGO -->
+        <div class="card-materia">
+            <img src="imagens/logomarca.png" class="logo-selo" alt="Logo Learning Hub">
+        </div>
+
+        <h2>RECUPERAR SENHA</h2>
+        <p class="recuperar-descricao">Digite seu e-mail cadastrado para receber as instruções de recuperação.</p>
+
+        <!-- FORMULÁRIO DE E-MAIL -->
+        <div class="formulario-estilo">
+            <input type="email" id="email-recuperar" placeholder="Digite seu e-mail">
+            <button type="button" class="btn-login" onclick="recuperarSenha()">ENVIAR</button>
+        </div>
+
+        <!-- LINK PARA VOLTAR -->
+        <a href="index.html">Voltar para o login</a>
+    </div>
+</body>
+</html>
+

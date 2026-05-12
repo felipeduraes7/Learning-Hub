@@ -1,0 +1,562 @@
+/* ============================================
+   LEARNING HUB - LIGHTBOARD (Dashboard)
+   Efeito Glass aprimorado (estilo iPhone)
+   ============================================ */
+
+/* ---------- RESET & BASE ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, "Segoe UI", sans-serif;
+}
+
+html, body {
+    height: 100%;
+    /* overflow: hidden removido — impedia scroll em mobile */
+}
+
+body {
+    background-color: #ffffff;
+    background-image: url('../imagens/background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #1d1d1f;
+}
+
+/* ---------- LAYOUT GERAL ---------- */
+.layout-lightboard {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* ---------- BARRA LATERAL (Efeito Glass) ---------- */
+.barra-lateral {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100vh;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+    background: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(7px) saturate(180%);
+    -webkit-backdrop-filter: blur(7px) saturate(180%);
+    border-right: 1px solid rgba(255, 255, 255, 0.4);
+    z-index: 100;
+    transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Fundo colorido sutil por trás do glass */
+.barra-lateral::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(255, 207, 84, 0.15) 0%,
+        rgba(66, 249, 255, 0.10) 100%
+    );
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* ---------- LOGO ---------- */
+.logo-topo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.logo-topo img {
+    width: 200px;
+    height: auto;
+    object-fit: contain;
+}
+
+/* ---------- PERFIL DO ESTUDANTE ---------- */
+.perfil-estudante {
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    color: #1d1d1f;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* ---------- MENU LATERAL ---------- */
+.menu-lateral {
+    width: 100%;
+    flex: 1;
+}
+
+.menu-lateral ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.menu-lateral a {
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    padding: 12px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: #1d1d1f;
+    background: rgba(255, 255, 255, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.menu-lateral a:hover {
+    background: rgba(255, 255, 255, 0.65);
+    transform: translateY(-2px);
+}
+
+/* ---------- BOTÃO SAIR ---------- */
+.botao-sair {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 0, 43, 0.3);
+    background: rgba(255, 1, 43, 0.12);
+    color: #d60017;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+    backdrop-filter: blur(7px);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.botao-sair:hover {
+    background: rgba(255, 1, 43, 0.22);
+    transform: translateY(-2px);
+}
+
+/* ---------- BOTÃO HAMBÚRGUER (só mobile) ---------- */
+.btn-menu-mobile {
+    display: none; /* Oculto no desktop */
+    position: fixed;
+    top: 14px;
+    left: 14px;
+    z-index: 200;
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    cursor: pointer;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    -webkit-tap-highlight-color: transparent;
+    transition: background 0.2s ease;
+}
+
+.btn-menu-mobile span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: #1d1d1f;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* Overlay escuro ao abrir menu mobile */
+.overlay-menu {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: 90;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+}
+
+/* ---------- CONTEÚDO PRINCIPAL ---------- */
+.conteudo-principal {
+    margin-left: 300px;
+    flex: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* ---------- MENU SUPERIOR ---------- */
+.menu-principal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 32px;
+    margin: 16px 24px 0;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(7px) saturate(160%);
+    -webkit-backdrop-filter: blur(7px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.menu-principal-esquerda h2 {
+    font-size: 20px;
+    font-weight: 800;
+    color: #000000;
+    letter-spacing: -0.5px;
+}
+
+.menu-principal-direita {
+    display: flex;
+    gap: 8px;
+}
+
+.menu-principal-direita a {
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 18px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1d1d1f;
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    transition: all 0.25s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.menu-principal-direita a:hover {
+    background: rgba(255, 255, 255, 0.75);
+    transform: translateY(-1px);
+}
+
+/* ---------- ÁREA DE CONTEÚDO ---------- */
+.area-conteudo {
+    flex: 1;
+    padding: 24px 32px 32px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; /* Scroll suave no iOS */
+}
+
+/* Título de boas-vindas */
+.boas-vindas {
+    margin-bottom: 28px;
+}
+
+.boas-vindas h1 {
+    font-size: 28px;
+    font-weight: 800;
+    color: #1d1d1f;
+    margin-bottom: 6px;
+    letter-spacing: -0.5px;
+}
+
+.boas-vindas p {
+    font-size: 15px;
+    color: #000000;
+    font-weight: 500;
+}
+
+/* ---------- SISTEMA DE VIEWS ---------- */
+.view {
+    display: none;
+}
+
+.view.ativa {
+    display: block;
+}
+
+/* ---------- CARDS DE ESTUDO ---------- */
+.container-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.card-estudo {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 24px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(7px) saturate(140%);
+    -webkit-backdrop-filter: blur(7px) saturate(140%);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.card-estudo:hover {
+    transform: translateY(-6px) scale(1.01);
+    background: rgba(255, 255, 255, 0.65);
+}
+
+.card-estudo h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1d1d1f;
+}
+
+.card-estudo p {
+    font-size: 13px;
+    line-height: 1.5;
+    color: #6e6e73;
+    flex: 1;
+}
+
+.btn-card {
+    width: 100%;
+    padding: 12px;
+    border-radius: 20px;
+    border: none;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    color: #1d1d1f;
+    background: linear-gradient(135deg, #ffcf545b 0%, #ffffff86 50%, #42f9ff6c 100%);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.btn-card:hover {
+    background: linear-gradient(135deg, #ffe6a2b3, #ffffffc0, #55e3f9b3);
+    transform: translateY(-2px);
+}
+
+/* ---------- TIMELINE DE PROJETOS ---------- */
+.timeline {
+    position: relative;
+    margin: 20px 0;
+    padding-left: 30px;
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    left: 8px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 3px;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 28px;
+}
+
+.timeline-ponto {
+    position: absolute;
+    left: -26px;
+    top: 6px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ffcf54 0%, #42f9ff 100%);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.card-timeline {
+    padding: 20px 24px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(7px) saturate(140%);
+    -webkit-backdrop-filter: blur(7px) saturate(140%);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.card-timeline:hover {
+    transform: translateY(-4px) scale(1.01);
+    background: rgba(255, 255, 255, 0.65);
+}
+
+.card-timeline h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1d1d1f;
+    margin-bottom: 4px;
+}
+
+.timeline-data {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    color: #6e6e73;
+    margin-bottom: 10px;
+    padding: 4px 10px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.card-timeline p {
+    font-size: 13px;
+    line-height: 1.5;
+    color: #6e6e73;
+}
+
+/* ---------- SCROLLBAR CUSTOMIZADA ---------- */
+.area-conteudo::-webkit-scrollbar,
+.barra-lateral::-webkit-scrollbar {
+    width: 6px;
+}
+
+.area-conteudo::-webkit-scrollbar-track,
+.barra-lateral::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.area-conteudo::-webkit-scrollbar-thumb,
+.barra-lateral::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+}
+
+.area-conteudo::-webkit-scrollbar-thumb:hover,
+.barra-lateral::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.25);
+}
+
+
+/* ============================================
+   RESPONSIVIDADE MOBILE
+   ============================================ */
+
+@media (max-width: 768px) {
+
+    /* Mostra o botão hambúrguer */
+    .btn-menu-mobile {
+        display: flex;
+    }
+
+    /* Barra lateral fica escondida fora da tela por padrão */
+    .barra-lateral {
+        transform: translateX(-100%);
+        width: 260px;
+    }
+
+    /* Quando o menu está aberto (.aberto adicionado via JS) */
+    .barra-lateral.aberto {
+        transform: translateX(0);
+    }
+
+    /* Overlay visível quando menu aberto */
+    .overlay-menu.visivel {
+        display: block;
+    }
+
+    /* Conteúdo principal ocupa tela toda */
+    .conteudo-principal {
+        margin-left: 0;
+        min-height: 100vh;
+        height: auto;
+        overflow: visible;
+    }
+
+    /* Menu superior com padding para não sobrepor o hambúrguer */
+    .menu-principal {
+        margin: 12px 12px 0;
+        padding: 12px 16px 12px 64px; /* Espaço para o botão hambúrguer */
+        border-radius: 16px;
+    }
+
+    .menu-principal-esquerda h2 {
+        font-size: 16px;
+    }
+
+    /* Esconde links do topo em telas pequenas (ficam no menu lateral) */
+    .menu-principal-direita {
+        display: none;
+    }
+
+    /* Área de conteúdo com padding menor */
+    .area-conteudo {
+        padding: 16px 12px 24px;
+        overflow-y: visible;
+        flex: none;
+    }
+
+    .boas-vindas h1 {
+        font-size: 22px;
+    }
+
+    .boas-vindas p {
+        font-size: 14px;
+    }
+
+    /* Cards em coluna única */
+    .container-cards {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .card-estudo {
+        padding: 18px;
+        border-radius: 18px;
+    }
+
+    /* Desativa hover nos cards (evita bug de "travar" em touch) */
+    .card-estudo:hover {
+        transform: none;
+    }
+
+    .card-timeline:hover {
+        transform: none;
+    }
+
+    .menu-lateral a:hover {
+        transform: none;
+    }
+
+    .btn-card:hover {
+        transform: none;
+    }
+
+    .botao-sair:hover {
+        transform: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .menu-principal {
+        margin: 10px 8px 0;
+        padding: 10px 12px 10px 60px;
+    }
+
+    .boas-vindas {
+        margin-bottom: 18px;
+    }
+
+    .boas-vindas h1 {
+        font-size: 19px;
+    }
+
+    .timeline {
+        padding-left: 24px;
+    }
+
+    .card-timeline {
+        padding: 16px;
+    }
+}

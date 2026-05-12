@@ -1,0 +1,153 @@
+/* ============================================
+   LEARNING HUB - ESTILOS BASE
+   Usado em: login, cadastro, recuperar senha
+   ============================================ */
+
+/* Corpo da página */
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: -apple-system, "Segoe UI", sans-serif;
+    background-color: #ffffff;
+    background-image: url('../imagens/background.png'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /* Permite scroll caso o conteúdo ultrapasse em telas muito pequenas */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Container do formulário com efeito vidro (glass) */
+.login-container {
+    width: 100%;
+    max-width: 320px;
+    padding: 24px 20px;
+    border-radius: 40px;
+    background: #57575721;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    border: 1px solid rgba(0, 0, 0, 0.153);
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+/* Logo da marca */
+.logo-selo {
+    display: block;
+    margin: 0 auto 10px;
+    max-width: 180px;
+    width: 60%;
+    height: auto;
+}
+
+/* Título do formulário */
+.login-container h2 {
+    color: #000000;
+    text-align: center;
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/* Grupo de inputs */
+.input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    font-size: 16px; /* Mínimo 16px para não dar zoom no iOS */
+}
+  
+/* Estilo dos campos de entrada */
+input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 20px;
+    margin: 4px 0;
+    text-align: center;
+    background: #00000031;
+    border: 1px solid #60606022;
+    outline: none;
+    border-radius: 20px;
+    color: #000000dc;
+    font-size: 16px; /* Mínimo 16px para não dar zoom automático no iOS */
+    -webkit-appearance: none; /* Remove estilo padrão iOS */
+    appearance: none;
+}
+
+/* Cor do texto placeholder */
+input::placeholder {
+    color: #000000dc;
+    opacity: 1;
+}
+
+/* Wrapper do formulário */
+.formulario-estilo {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin: 12px 0;
+}
+
+/* Botão principal */
+.btn-login {
+    width: 100%;
+    padding: 12px;
+    border-radius: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.135);
+    background: linear-gradient(135deg, #ffcf545b 0%, #ffffff86 50%, #42f9ff6c 100%);
+    color: #00000095;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    /* Evita tap highlight feio no mobile */
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+/* Efeito ao passar o mouse */
+.btn-login:hover {
+    background: linear-gradient(135deg, #ffe6a2b3, #ffffffc0, #55e3f9b3);
+    transform: translateY(-3px);
+}
+
+/* Remove o transform em toque mobile (evita bug) */
+@media (hover: none) {
+    .btn-login:hover {
+        transform: none;
+    }
+}
+
+/* Links embaixo do formulário */
+a {
+    display: block;
+    text-align: center;
+    margin-top: 12px;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-size: 14px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Telas muito pequenas (< 360px) */
+@media (max-width: 360px) {
+    .login-container {
+        padding: 18px 14px;
+        border-radius: 28px;
+    }
+
+    .login-container h2 {
+        font-size: 15px;
+    }
+
+    .logo-selo {
+        max-width: 150px;
+    }
+}
